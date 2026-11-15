@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AHP & TOPSIS Computer Comparison</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="viz-root">
+
+  <header class="page-header">
+    <h1>Computer Comparison System</h1>
+    <p class="subtitle">Set criteria weights with AHP, then see which computer wins with TOPSIS.</p>
+  </header>
+
+  <main>
+    <!-- Step 1: Computers -->
+    <section class="card">
+      <h2>1. Enter the Computers</h2>
+      <div class="computers-grid">
+        <fieldset class="computer-form" id="computerA">
+          <legend>Computer A</legend>
+          <label>Name <input type="text" name="name" value="Laptop A" required></label>
+          <label>CPU score (1-10) <input type="number" name="cpuScore" value="8.5" min="0.1" step="0.1" required></label>
+          <label>RAM (GB) <input type="number" name="ramGB" value="16" min="0.1" step="0.1" required></label>
+          <label>Storage (GB) <input type="number" name="storageGB" value="512" min="0.1" step="1" required></label>
+          <label>GPU score (1-10) <input type="number" name="gpuScore" value="7" min="0.1" step="0.1" required></label>
+          <label>Price (USD) <input type="number" name="price" value="900" min="0.1" step="1" required></label>
+        </fieldset>
+        <fieldset class="computer-form" id="computerB">
+          <legend>Computer B</legend>
+          <label>Name <input type="text" name="name" value="Laptop B" required></label>
+          <label>CPU score (1-10) <input type="number" name="cpuScore" value="7" min="0.1" step="0.1" required></label>
+          <label>RAM (GB) <input type="number" name="ramGB" value="32" min="0.1" step="0.1" required></label>
+          <label>Storage (GB) <input type="number" name="storageGB" value="1024" min="0.1" step="1" required></label>
+          <label>GPU score (1-10) <input type="number" name="gpuScore" value="9" min="0.1" step="0.1" required></label>
+          <label>Price (USD) <input type="number" name="price" value="1150" min="0.1" step="1" required></label>
+        </fieldset>
+      </div>
+    </section>
+
+    <!-- Step 2: AHP pairwise comparisons -->
+    <section class="card">
+      <h2>2. Set Criteria Priorities (AHP)</h2>
+      <p class="hint">For each row, choose how much more important one criterion is than the other. The middle position means "equally important".</p>
+      <div id="pairwiseContainer" class="pairwise-container"></div>
+      <div class="consistency-badge" id="consistencyBadge" hidden></div>
+    </section>
+
+    <div class="submit-row">
+      <button id="compareBtn" class="primary-btn">Compare</button>
+      <span id="errorMsg" class="error-msg" role="alert"></span>
+    </div>
+
+    <!-- Results -->
+    <section class="card" id="resultsSection" hidden>
+      <h2>Results</h2>
+
+      <div class="winner-banner" id="winnerBanner"></div>
+
+      <div class="results-grid">
+        <div>
+          <h3>AHP Criteria Weights</h3>
+          <div id="weightsChart" class="bar-chart" role="img" aria-label="AHP criteria weights"></div>
+        </div>
+        <div>
+          <h3>TOPSIS Closeness Scores</h3>
+          <div id="scoresChart" class="bar-chart" role="img" aria-label="TOPSIS closeness scores"></div>
+        </div>
+      </div>
+
+      <button id="toggleTableBtn" class="link-btn">Show table view</button>
+      <div id="tableView" class="table-view" hidden></div>
+    </section>
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
